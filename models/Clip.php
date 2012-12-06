@@ -7,10 +7,10 @@
 ###
 require_once("DbConn.php");
 require_once("FactoryObject.php");
-require_once("JSONObject.php");
+require_once("JsonObject.php");
 require_once("Video.php");
 
-class Clip extends FactoryObject implements JSONObject {
+class Clip extends FactoryObject implements JsonObject {
 	
 	# Constants
 	

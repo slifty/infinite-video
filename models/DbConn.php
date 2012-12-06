@@ -46,7 +46,7 @@ class DbConn {
 			$data = str_replace("\r\n", "\n", $data);
 			$data = str_replace("\r", "\n", $data);
 			
-			// JSON requires some characters be escaped
+			// Json requires some characters be escaped
 			$data = str_replace("\n", "\\n", $data);
 			$data = str_replace("\t", "\\t", $data);
 			$data = str_replace('"','\\"',$data);

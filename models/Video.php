@@ -8,10 +8,10 @@
 
 require_once("DbConn.php");
 require_once("FactoryObject.php");
-require_once("JSONObject.php");
+require_once("JsonObject.php");
 require_once("Clip.php");
 
-class Video extends FactoryObject implements JSONObject {
+class Video extends FactoryObject implements JsonObject {
 	
 	# Constants
 	
@@ -91,15 +91,15 @@ class Video extends FactoryObject implements JSONObject {
 	# JsonObject Methods
 	public function toJson($contentStart=null, $contentLength=null) {
 		$clips = $this->getClips();
-		$clipsJSONArray = array();
+		$clipsJsonArray = array();
 		foreach($clips as $clip)
-			$clipsJSONArray[] = $clip->toJson();
-		$clipsJSON = "[".implode(",",$clipsJSONArray)."]";
+			$clipsJsonArray[] = $clip->toJson();
+		$clipsJson = "[".implode(",",$clipsJsonArray)."]";
 		
 		$json = '{';
 		$json .= '"id": '.DbConn::clean($this->getItemId()).',';
 		$json .= '"url": '.DbConn::clean($this->getUrl()).',';
-		$json .= '"clips": '.$clipsJSON;
+		$json .= '"clips": '.$clipsJson;
 		$json .= '}';
 		return $json;
 	}
