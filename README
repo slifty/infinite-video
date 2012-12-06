@@ -1,0 +1,117 @@
+Trollitical Ads: What happens when you merge two things that piss you off?
+=============
+
+This document explains how to set up the code.
+
+If you have any questions at all please don't be afraid to ask.
+
+Installing
+-------------
+
+Setting up the client and backend
+
+**OPTION 1: Scripted Install**
+
+1. Fork https://github.com/slifty/opened-captions
+1. Set up LAMP / WAMP
+1. Enable ModRewrite
+1. Using a terminal, navigate to the the same directory as this README
+1. Run the install script
+
+		./install.sh
+		
+1. Edit the config file
+
+		vi config.php
+
+1. Edit the .htaccess file
+
+		vi .htaccess
+
+**OPTION 2: Manual Install**
+
+1. Fork https://github.com/slifty/opened-captions
+1. Set up LAMP / WAMP
+1. Enable ModRewrite
+1. Using a terminal, navigate to the the same directory as this README
+1. Create a local config file
+
+		cp config.default.php config.php
+		
+1. Edit the config file
+
+		vi config.php
+
+1. Create a local .htaccess
+
+		cp htaccess.default .htaccess
+
+1. Edit the .htaccess file
+
+		vi .htaccess
+
+1. Run the rakes
+
+		php rake.php
+		php rake_data.php
+
+
+Starting the Server
+-------------
+
+**For Development**
+1. Using a terminal, navigate to the same directory as this README
+1. Start the node server
+
+    node app
+
+**For Production**
+1. Do something more intelligent / robust.  For instance https://gist.github.com/715255, or https://github.com/nodejitsu/forever
+
+
+About the code
+=============
+
+The Server
+-------------
+
+This isn't a particularly deep project, but it does involve a database!  I know everyone hates PHP.  QQ moar please.
+
+Models are in the models folder
+No controllers, but instead actions are autorouted to the proper page
+URL style is "something.com/?p=[page]&a=[action]
+DIR style is /pages/[page]/[action].php
+
+Server does the following:
+
+1. Stores everything about the ads themselves
+1. Generates a random remix hash
+
+
+The Client
+-------------
+
+
+Licensing
+=============
+The MIT License (MIT)
+-------------
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+== INSTALL ==
+
+
+== UPDATE ==
+php install.php
+
+
+== DATA REFRESH  == 
+// CAUTION: this may delete data you wanted to keep -- be sure to backup the schema if you want to retain your information
+php datarake.php
+
