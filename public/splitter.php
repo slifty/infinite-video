@@ -1,6 +1,6 @@
 <?PHP
 	set_include_path('../');
-	require_once("conf.php");
+	require_once("config.php");
 ?>
 <html>
 	<head>

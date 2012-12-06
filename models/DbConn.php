@@ -6,7 +6,7 @@
 #
 # Comments:
 ###
-include_once("conf.php");
+include_once("config.php");
 class DbConn {
 	
 	# Constants

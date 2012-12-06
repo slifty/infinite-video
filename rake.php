@@ -1,6 +1,6 @@
 <?php
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-require_once("conf.php");
+require_once("config.php");
 require_once("models/DbConn.php");
 
 // Get connection

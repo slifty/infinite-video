@@ -1,7 +1,7 @@
 <?PHP
 	set_include_path($_SERVER['DOCUMENT_ROOT']);
 	
-	require_once("conf.php");
+	require_once("config.php");
 	header('Content-type: text/javascript');
 	header('Access-Control-Allow-Origin: *');
 	header('Access-Control-Allow-Methods: POST, GET, OPTIONS');

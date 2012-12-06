@@ -18,7 +18,7 @@
 			
 			base.id = initCount;
 			base.loadedCount = 0;
-			base.videos = videos;
+			base.videos = videos.slice(0, 10);
 			base.bufferingQueue = [];
 			base.readyQueue = [];
 			base.isPlaying = false;
@@ -93,12 +93,10 @@
 			video.pause(start);
 		}
 		
-		base.start = function(paramaters) {
-			base.preload(videos[0].url);
-			base.preload(videos[1].url);
-			base.preload(videos[2].url);
-			base.preload(videos[3].url);
-			base.preload(videos[4].url);
+		base.start = function() {
+			for(var x in base.videos) {
+				base.preload(base.videos[x].url);
+			}
 		};
 		
 		// Run initializer
