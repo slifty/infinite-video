@@ -115,7 +115,7 @@
 		}
 		
 		base.start = function() {
-			base.load(10); // Load 10 videos to start
+			base.load(3); // Load 3 videos at a time
 		};
 		
 		// Run initializer
@@ -123,7 +123,7 @@
 		
 		// RELEASE THE KRACKEN
 		base.start();
-	};
+	}
 
 	$.infiniteVideo.defaultOptions = {
 	};
