@@ -18,47 +18,66 @@
 			
 			base.id = initCount;
 			base.loadedCount = 0;
-			base.videos = videos.slice(0, 10);
-			base.bufferingQueue = [];
-			base.readyQueue = [];
+			base.videos = videos; // a list of video data arrays that have not been loaded as videos
+			base.readyQueue = []; // a list of videos that are loaded and ready to play
 			base.isPlaying = false;
 			
 			base.options = $.extend({},$.infiniteVideo.defaultOptions, options);
 		};
 		
-		base.preload = function(url) {
+		base.load = function(data) {
+			if(!data)
+				return;
+			
+			if(typeof(data) == "number") {
+				for(var x=0 ; x<data ; x++) {
+					base.load(base.videos.pop());
+				}
+				return;
+			}
+			
+			var url = data.url;
 			var $div = $("<div />");
 			var id = "infiniteVideo" + base.id + "_" + base.loadedCount;
 			$div.attr('id', id);
 			$div.addClass('video');
 			base.$el.append($div)
-			var youtubeVideo = Popcorn.youtube(
+			var video = Popcorn.youtube(
 				'#' + id,
-				url);
-			youtubeVideo.on('loadedmetadata', function(e) {
+				url+'&controls=0');
+			video.on('loadedmetadata', function(e) {
 				base.queue(this);
 			});
-			youtubeVideo.on('seeked', function(e) {
+			video.on('seeked', function(e) {
 				base.ready(this);
 			});
-			youtubeVideo.on('timeupdate', function(e) {
+			video.on('timeupdate', function(e) {
 				if(this.iv_endTime == 0) return;
-				if(this.currentTime() >= this.iv_endTime)
+				if(this.currentTime() >= this.iv_endTime && this.iv_payload) {
 					base.stop(this);
+					base.next();
+					this.iv_payload = false;
+				}
 			});
-			youtubeVideo.iv_endTime = 0;
-			
+			video.iv_endTime = 0;
+			video.iv_data = data;
+			video.iv_id = id;
+			video.iv_payload = true;
 			base.loadedCount++;
+		}
+		
+		base.unload = function(video) {
+			var data = video.iv_data;
+			video.destroy();
+			$('#' + video.iv_id).remove();
+			base.videos.push(data);
 		}
 		
 		base.next = function() {
 			if(base.readyQueue.length < 2 || base.isPlaying)
 				return;
-			
 			var video = base.readyQueue.shift();
-			
-			console.log(video.readyState());
-			if(video.readyState() < 2){
+			if(video.readyState() < 2) {
 				base.readyQueue.push(video);
 				base.next();
 			} else {
@@ -67,17 +86,19 @@
 		}
 		
 		base.stop = function(video) {
-			video.pause();
 			base.isPlaying = false;
-			console.log("STOPPING");
-			base.next();
-			base.queue(video);
+			$('#'+video.iv_id).removeClass('active');
+			setTimeout(function() {
+				video.pause();
+				base.unload(video);
+			},400);
 		}
 		
 		base.play = function(video) {
 			base.isPlaying = true;
-			console.log("STARTING");
+			$('#'+video.iv_id).addClass('active');
 			video.play();
+			base.load(1);
 		}
 		
 		base.ready = function(video) {
@@ -88,15 +109,13 @@
 		base.queue = function(video) {
 			var duration = video.duration();
 			if(duration < 5) return;
-			var start = Math.floor((duration - 5) * Math.random());
-			video.iv_endTime = start + 5;
+			var start = Math.floor((duration - 10) * Math.random());
+			video.iv_endTime = start + 10;
 			video.pause(start);
 		}
 		
 		base.start = function() {
-			for(var x in base.videos) {
-				base.preload(base.videos[x].url);
-			}
+			base.load(10); // Load 10 videos to start
 		};
 		
 		// Run initializer

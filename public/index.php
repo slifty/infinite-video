@@ -28,10 +28,12 @@
 		<link rel="stylesheet" href="styles/main.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	</head>
 	<body>
-		<h1>The Infinite Political Ad</h1>
-		<p>If you're anything like me you can't shake the feeling that you've lost something special recently.  You aren't sure what it is, but there is something that used to be in your life and is no longer there.</p>
-		<p>Think about it and you will instantly figure out what it is.  You miss political ads!  You NEED political ads!</p>
-		<p>Never fear.  This one will never end.</p>
-		<div id="infiniteVideo"></div>
+		<div id="container">
+			<h1>The Infinite Political Ad</h1>
+			<p>If you're anything like me you can't shake the feeling that you've lost something special.  You can't put your finger on it. There is something that used to be in your life and is no longer there.</p>
+			<p>Think about it.  You miss political ads!  You NEED political ads!</p>
+			<p>Never fear.  This one will never end.</p>
+			<div id="infiniteVideo"></div>
+		</div>
 	</body>
 </html>
