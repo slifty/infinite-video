@@ -31,7 +31,7 @@
 			
 			if(typeof(data) == "number") {
 				for(var x=0 ; x<data ; x++) {
-					base.load(base.videos.pop());
+					base.load(base.videos.shift());
 				}
 				return;
 			}

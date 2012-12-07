@@ -33,6 +33,7 @@
 			<p>If you're anything like me you can't shake the feeling that you've lost something special.  You can't put your finger on it. There is something that used to be in your life and is no longer there.</p>
 			<p>Think about it.  You miss political ads!  You NEED political ads!</p>
 			<p>Never fear.  This one will never end.</p>
+			<p>(although you may need to wait a few moments for it to load)</p>
 			<div id="infiniteVideo"></div>
 		</div>
 	</body>
