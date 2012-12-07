@@ -20,7 +20,7 @@ ul { margin-left: 20px; }
 p { margin: 10px 0px; }
 
 /* Core Elements */
-#container { width: 900px; margin: auto; padding: 10px; }
+#container { max-width: 900px; margin: auto; padding: 10px; }
 
 #header {height: 100px; width: 100%; }
 
@@ -31,5 +31,7 @@ p { margin: 10px 0px; }
 #footer {}
 	
 /* Video Elements */
-div.video { height: 400px; width: 500px; float: left; margin-left: -999999; }
-div.video.active { height: 400px; width: 500px; float: left; margin-left: 0px; }
+div.video { width: 100%; float: left; margin-left: -999999; }
+div.video.active { margin-left: 0px; margin-top: -200px; }
+
+#explanation {height: 200px;}

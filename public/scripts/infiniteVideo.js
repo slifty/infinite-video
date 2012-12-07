@@ -54,9 +54,9 @@
 			video.on('timeupdate', function(e) {
 				if(this.iv_endTime == 0) return;
 				if(this.currentTime() >= this.iv_endTime && this.iv_payload) {
+					this.iv_payload = false;
 					base.stop(this);
 					base.next();
-					this.iv_payload = false;
 				}
 			});
 			video.iv_endTime = 0;
