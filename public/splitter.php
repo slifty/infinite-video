@@ -30,7 +30,7 @@
 		</script>
 	</head>
 	<body>
-			<div id="slicer"></div>
-		</div>
+		<div id="explanation">Q + W = Start / Stop, E=EASY MODE</div>
+		<div id="slicer"></div>
 	</body>
 </html>
