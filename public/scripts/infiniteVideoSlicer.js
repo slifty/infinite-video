@@ -37,17 +37,20 @@
 			$(document).keypress(function(e) {
 				if(!base.active) return;
 				switch(e.charCode) {
-					case 113: // q
-					case 119: // w
+					case 101: // e
 						if(base.isStarted)
 							base.stop();
 						else
 							base.start();
 						break;
-					case 101: // e
+					case 113: // q
+					case 119: // w
 						if(base.isStarted)
 							base.stop();
 						base.start();
+						break;
+					case 112: // p
+						base.restart();
 						break;
 				}
 			});
@@ -91,12 +94,20 @@
 			}
 		}
 		
+		base.restart = function() {
+			var data = base.active.ivs_data;
+			base.unload(base.active);
+			base.load(data);
+		}
+		
 		base.start = function() {
+			if(base.isStarted) base.stop();
 			base.isStarted = true;
 			base.results.append("INSERT INTO clips (id, video_id, start, stop) VALUES (0, " + base.active.ivs_data.id + "," + base.active.currentTime());
 		}
 		
 		base.stop = function(video) {
+			if(!base.isStarted) return;
 			base.isStarted = false;
 			base.results.append("," + base.active.currentTime() + ");\n");
 		}

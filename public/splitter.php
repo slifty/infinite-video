@@ -30,7 +30,7 @@
 		</script>
 	</head>
 	<body>
-		<div id="explanation">Q + W = Start / Stop, E=EASY MODE</div>
+		<div id="explanation">q/w = ][ or [, e=[ or ], p = Restart</div>
 		<div id="slicer"></div>
 	</body>
 </html>
