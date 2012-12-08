@@ -13,21 +13,23 @@
 <html>
 	<head>
 		<title>Infinite Political Ad</title>
-		
+		<link rel="stylesheet" href="styles/main.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="styles/index.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
 		<script src="scripts/pocorn.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="scripts/infiniteVideo.js" type="text/javascript" charset="utf-8"></script>
 		
 		<script type="text/javascript">
-			var ads = [<?=$videoJson?>];
+			var videos = [<?=$videoJson?>];
 			$(function() {
-				$("#infiniteVideo").infiniteVideo(ads);
+				$("#infiniteVideo").infiniteVideo(videos);
 			});
 		</script>
-		<link rel="stylesheet" href="styles/main.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	</head>
 	<body>
+		<div id="explanation">Q=Start, W=Stop, E=StopStart</div>
 		<a href="https://github.com/slifty/infinite-video"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 		<div id="container">
 			<div id="explanation">

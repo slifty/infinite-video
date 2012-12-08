@@ -1,0 +1,5 @@
+/* Video Elements */
+div.video { width: 100%; float: left; margin-left: -999999; }
+div.video.active { margin-left: 0px; margin-top: -200px; }
+
+#explanation {height: 200px; float: left;}
