@@ -30,7 +30,7 @@
 		</script>
 	</head>
 	<body>
-		<div id="explanation">q/w = ][ or [, e=[ or ], p = Restart</div>
+		<div id="explanation">q/w = start/stop || e=start/stopstart || p=restart || [=prev || ]=next</div>
 		<div id="slicer"></div>
 	</body>
 </html>

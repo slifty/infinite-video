@@ -8,6 +8,7 @@
 		base.$el = $(el);
 		base.el = el;
 		base.isStarted = false;
+		base.cur = 0;
 
 		// Add a reverse reference to the DOM object
 		base.$el.data("infiniteVideoSlicer", base);
@@ -15,7 +16,7 @@
 		base.init = function() {
 			if( typeof( videos ) === "undefined" || videos === null ) videos = [];
 			
-			base.results = $("<textarea />").attr('id', 'results');
+			base.results = $("<textarea />").attr('id', 'results').attr('disabled','true');
 			base.cinema = $("<div />").attr('id', 'cinema');
 			base.list = $("<ul />").attr('id', 'videos');
 			base.$el.append(base.list);
@@ -28,9 +29,9 @@
 				var video = base.videos[x];
 				base.list.append(
 					$("<li>").html("<b>" + video.id + ") </b>" + video.url)
-						.bind('click',{video: video}, function(ev) {
-							base.unload(base.active);
+						.bind('click',{video: video, index: x}, function(ev) {
 							base.load(ev.data.video);
+							base.cur = ev.data.index;
 						}
 				));
 			}
@@ -52,10 +53,17 @@
 					case 112: // p
 						base.restart();
 						break;
+					case 91: // [
+						base.prev();
+						break;
+					case 93: // ]
+						base.next();
+						break;
 				}
 			});
 		};
 		base.load = function(data) {
+			if(base.active) base.unload(base.active);
 			base.results.append("DELETE FROM clips WHERE clips.id = " + data.id + ";\n");
 			var url = data.url;
 			var $div = $("<div />");
@@ -96,7 +104,6 @@
 		
 		base.restart = function() {
 			var data = base.active.ivs_data;
-			base.unload(base.active);
 			base.load(data);
 		}
 		
@@ -104,17 +111,29 @@
 			if(base.isStarted) base.stop();
 			base.isStarted = true;
 			base.results.append("INSERT INTO clips (id, video_id, start, stop) VALUES (0, " + base.active.ivs_data.id + "," + base.active.currentTime());
+			base.results.scrollTop(base.results[0].scrollHeight);
 		}
 		
 		base.stop = function(video) {
 			if(!base.isStarted) return;
 			base.isStarted = false;
 			base.results.append("," + base.active.currentTime() + ");\n");
+			base.results.scrollTop(base.results[0].scrollHeight);
 		}
 
 		base.stopstart = function() {
 			base.stop();
 			base.start();
+		}
+		
+		base.prev = function() {
+			base.cur = Math.max(0, base.cur - 1);
+			base.load(base.videos[base.cur]);
+		}
+		
+		base.next = function() {
+			base.cur = Math.min(base.videos.length, base.cur + 1);
+			base.load(base.videos[base.cur]);
 		}
 		
 		// Run initializer
