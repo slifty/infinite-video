@@ -165,7 +165,7 @@ class Clip extends FactoryObject implements JsonObject {
 	
 	public function getStart() { return $this->start; }
 	
-	public function getEnd() { return $this->end; }
+	public function getStop() { return $this->stop; }
 	
 	
 	# Setters
@@ -173,7 +173,7 @@ class Clip extends FactoryObject implements JsonObject {
 	
 	public function setStart($lng) { $this->start = $lng; }
 	
-	public function setContent($end) {$this->end = $lng; }
+	public function setEnd($lng) {$this->stop = $lng; }
 	
 	
 	# Static Methods

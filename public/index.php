@@ -2,7 +2,7 @@
 	set_include_path('../');
 	require_once("models/Video.php");
 	
-	$videos = Video::getAllObjects();
+	$videos = Video::getObjectsWithClips();
 	$videoJsons = array();
 	foreach($videos as $video)
 		$videoJsons[] = $video->toJson();
@@ -24,7 +24,7 @@
 		<script type="text/javascript">
 			var videos = [<?=$videoJson?>];
 			$(function() {
-				$("#infiniteVideo").infiniteVideo(videos);
+				$("#infiniteVideo").infiniteVideo(videos, {clip_selection:'random'});
 			});
 		</script>
 	</head>

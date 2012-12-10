@@ -178,6 +178,13 @@ class Video extends FactoryObject implements JsonObject {
 						   FROM videos";
 		return Video::getObjects($query_string);
 	}
+	
+	public static function getObjectsWithClips() {
+		$query_string = "SELECT videos.id as itemId 
+						   FROM videos
+						  WHERE EXISTS (select * from clips where clips.video_id = videos.id)";
+		return Video::getObjects($query_string);
+	}
 }
 
 ?>

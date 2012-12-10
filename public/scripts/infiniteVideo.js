@@ -46,6 +46,7 @@
 				'#' + id,
 				url+'&controls=0');
 			video.on('loadedmetadata', function(e) {
+				video.iv_endTime = video.duration() - 1;
 				base.queue(this);
 			});
 			video.on('seeked', function(e) {
@@ -91,6 +92,7 @@
 			setTimeout(function() {
 				video.pause();
 				base.unload(video);
+				base.load(1);
 			},400);
 		}
 		
@@ -98,7 +100,6 @@
 			base.isPlaying = true;
 			$('#'+video.iv_id).addClass('active');
 			video.play();
-			base.load(1);
 		}
 		
 		base.ready = function(video) {
@@ -107,15 +108,27 @@
 		}
 		
 		base.queue = function(video) {
-			var duration = video.duration();
-			if(duration < 5) return;
-			var start = Math.floor((duration - 10) * Math.random());
-			video.iv_endTime = start + 10;
-			video.pause(start);
+			if(base.options.clip_selection == 'none') {
+				var duration = video.duration();
+				if(duration < 5) return;
+				var start = Math.floor((duration - 10) * Math.random());
+				video.iv_endTime = start + 10;
+				video.pause(start);
+			} else {
+				if(video.iv_data.clips.length == 0) return;
+				var clip_id = Math.floor(Math.random() * video.iv_data.clips.length);
+				var clip = video.iv_data.clips[clip_id];
+				var start = Math.floor(clip.start);
+				video.iv_endTime = clip.stop;
+				video.pause(start);
+			}
 		}
 		
 		base.start = function() {
-			base.load(3); // Load 3 videos at a time
+			if(base.options.clip_selection == 'none')
+				base.load(3); // Load 3 videos at a time
+			else
+				base.load(4); // Shorter clips needs more buffering
 		};
 		
 		// Run initializer
@@ -126,6 +139,8 @@
 	}
 
 	$.infiniteVideo.defaultOptions = {
+		clip_selection: 'none',
+		clip_duration: 10
 	};
 
 	$.fn.infiniteVideo = function(videos, options){
