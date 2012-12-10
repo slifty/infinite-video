@@ -93,7 +93,7 @@
 				video.pause();
 				base.unload(video);
 				base.load(1);
-			},400);
+			},base.options.clip_overlap);
 		}
 		
 		base.play = function(video) {
@@ -119,7 +119,7 @@
 				var clip_id = Math.floor(Math.random() * video.iv_data.clips.length);
 				var clip = video.iv_data.clips[clip_id];
 				var start = Math.floor(clip.start);
-				video.iv_endTime = clip.stop;
+				video.iv_endTime = clip.stop - base.options.clip_overlap/1000;
 				video.pause(start);
 			}
 		}
@@ -140,7 +140,8 @@
 
 	$.infiniteVideo.defaultOptions = {
 		clip_selection: 'none',
-		clip_duration: 10
+		clip_duration: 10,
+		clip_overlap: 400
 	};
 
 	$.fn.infiniteVideo = function(videos, options){
