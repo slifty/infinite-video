@@ -118,7 +118,7 @@
 				if(video.iv_data.clips.length == 0) return;
 				var clip_id = Math.floor(Math.random() * video.iv_data.clips.length);
 				var clip = video.iv_data.clips[clip_id];
-				var start = Math.floor(clip.start);
+				var start = clip.start;
 				video.iv_endTime = clip.stop - base.options.clip_overlap/1000;
 				video.pause(start);
 			}
