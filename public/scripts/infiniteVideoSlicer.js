@@ -64,7 +64,7 @@
 		};
 		base.load = function(data) {
 			if(base.active) base.unload(base.active);
-			base.results.append("DELETE FROM clips WHERE clips.id = " + data.id + ";\n");
+			base.results.append("DELETE FROM clips WHERE clips.video_id = " + data.id + ";\n");
 			var url = data.url;
 			var $div = $("<div />");
 			id = "video";
