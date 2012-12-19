@@ -29,14 +29,13 @@
 		</script>
 	</head>
 	<body>
-		<a href="https://github.com/slifty/infinite-video"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+		<a id="git" href="https://github.com/slifty/infinite-video"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 		<div id="container">
 			<div id="explanation">
-				<h1>The Infinite Political Ad</h1>
-				<p>If you're anything like me you can't shake the feeling that you've lost something special.  You can't put your finger on it. There is something that used to be in your life and is no longer there.</p>
-				<p>Think about it.  You miss political ads!  You NEED political ads!</p>
+				<p>You can't shake the feeling that you've lost something special.</p>
+				<p>Think about it.  <strong>You miss political ads!</strong></p>
 				<p>Never fear.  This one will never end.</p>
-				<p>(although you may need to wait a few moments for it to load)</p>
+				<p><em><strong>Note: </strong>you may need to wait a few moments for it to load.</em></p>
 			</div>
 			<div id="infiniteVideo"></div>
 		</div>

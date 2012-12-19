@@ -128,7 +128,7 @@
 			if(base.options.clip_selection == 'none')
 				base.load(3); // Load 3 videos at a time
 			else
-				base.load(4); // Shorter clips needs more buffering
+				base.load(5); // Shorter clips needs more buffering
 		};
 		
 		// Run initializer
