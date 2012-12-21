@@ -26,6 +26,10 @@
 			$(function() {
 				if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))
 					$("body").text("Sorry, this doesn't work on mobile devices");
+				else if(/Safari/i.test(navigator.userAgent) && !/Chrome/i.test(navigator.userAgent))
+					$("body").text("Safari hates infinite videos, apparently.  Try using Chrome or Firefox.");
+				else if($.browser.msie)
+					$("body").text("Internet Explorer hates infinite videos, apparently.  Try using Chrome or Firefox.");
 				else
 					$("#infiniteVideo").infiniteVideo(videos, {clip_selection:'random'});
 			});
