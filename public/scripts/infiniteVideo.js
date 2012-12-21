@@ -22,6 +22,16 @@
 			base.readyQueue = []; // a list of videos that are loaded and ready to play
 			base.isPlaying = false;
 			
+			var timer = $("<div />")
+				.appendTo(base.$el);
+			var time = 0;
+			setInterval(function() {
+				timer.text("You have watched " + time / 1000 + " seconds of political ads");
+				if(base.isPlaying) {
+					time += 100;
+				}
+			}, 100);
+			
 			base.options = $.extend({},$.infiniteVideo.defaultOptions, options);
 		};
 		
