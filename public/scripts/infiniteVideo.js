@@ -31,7 +31,10 @@
 			
 			if(typeof(data) == "number") {
 				for(var x=0 ; x<data ; x++) {
-					base.load(base.videos.shift());
+					var next = base.videos.splice(Math.floor(Math.random() * base.videos.length),1);
+					if(next.length < 1)
+						return;
+					base.load(next[0]);
 				}
 				return;
 			}
@@ -60,6 +63,7 @@
 					base.next();
 				}
 			});
+			data.watched = [];
 			video.iv_endTime = 0;
 			video.iv_data = data;
 			video.iv_id = id;
@@ -115,9 +119,19 @@
 				video.iv_endTime = start + 10;
 				video.pause(start);
 			} else {
+				// Repopulate the watched clips if the unwatched is empty
+				if(video.iv_data.clips.length == 0) {
+					video.iv_data.clips = video.iv_data.watched;
+					video.iv_data.watched = [];
+				}
 				if(video.iv_data.clips.length == 0) return;
+				
+				// Select an "unwatched" clip
 				var clip_id = Math.floor(Math.random() * video.iv_data.clips.length);
-				var clip = video.iv_data.clips[clip_id];
+				var clip = video.iv_data.clips.splice(clip_id,1);
+				video.iv_data.watched.push(clip);
+				
+				// Start the clip
 				var start = clip.start;
 				video.iv_endTime = clip.stop - base.options.clip_overlap/1000;
 				video.pause(start);
