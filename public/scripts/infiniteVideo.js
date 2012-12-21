@@ -128,7 +128,7 @@
 				
 				// Select an "unwatched" clip
 				var clip_id = Math.floor(Math.random() * video.iv_data.clips.length);
-				var clip = video.iv_data.clips.splice(clip_id,1);
+				var clip = (video.iv_data.clips.splice(clip_id,1))[0];
 				video.iv_data.watched.push(clip);
 				
 				// Start the clip
